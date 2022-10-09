@@ -1,6 +1,8 @@
-const model = require('../models/processamento_arquivos.models');
-const queue = require('../lib/queue');
 const config = require('config');
+const model = require('../models/processamento_arquivos.models');
+const modelAlunos = require('../models/alunos.models');
+const queue = require('../lib/queue');
+const xlsx = require('../lib/xlsx');
 
 const addSheetToQueue =  async function addSheetToQueue(data) {
     const { file } = data;
@@ -38,18 +40,40 @@ const getByIdArquivo = async function getByIdArquivo(data) {
 };
 
 
-const processaArquivo = async function processaArquivo(data) {
-    const { id } = data;
-    await model.updateOne(id, { status: 'processando' });
+const processFile = async function processFile(data) {
+    const { id, file: { path } } = data;
+
+    changeStatusProcess(id, 'processando');
+    const dataFile = xlsx.getDataFile(path);
+
+    dataFile.map(async item => {
+        await modelAlunos.insert({
+            nome_completo: item.__EMPTY,
+            estado_civil: item.__EMPTY_1,
+            email: item.__EMPTY_2,
+            cpf: item.__EMPTY_3,
+            rg: item.__EMPTY_4,
+            data_nascimento: item.__EMPTY_5,
+            sexo: item.__EMPTY_6,
+        });
+    });
+
     await model.updateOne(id, { status: 'processado' });
+    changeStatusProcess(id, 'processado');
+
     return {
         code: 200,
+        status: 'processado',
     };
 
+};
+
+const changeStatusProcess = async function changeStatusProcess(id, status) {
+    return await model.updateOne(id, { status });
 };
 
 module.exports = {
     addSheetToQueue,
     getByIdArquivo,
-    processaArquivo,
+    processFile,
 };

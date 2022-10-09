@@ -9,7 +9,11 @@ const worker = function worker() {
     queue.consume(config.get("queue.keySheets"), message => {
         const data = JSON.parse(message.content.toString());
         logger.log('workers', `PROCESSING queue ID: ${data.id}`);
-        controller.processaArquivo(data);
+        try {
+            controller.processFile(data);
+        } catch (error) {
+            logger.log('workers:error', `PROCESSING queue ID: ${data.id}`);
+        }
     });
 
 };
