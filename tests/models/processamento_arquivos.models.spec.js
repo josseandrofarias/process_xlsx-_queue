@@ -1,12 +1,12 @@
 const DBConnector = require('@/lib/db');
-const AlunosModel = require('@/models/processamento_arquivos.models');
-const AlunosMock = require('../mocks/processamento_arquivos_mock');
+const FileModel = require('@/models/processamento_arquivos.models');
+const FileMock = require('../mocks/processamento_arquivos_mock');
 let repository, mock;
 const makeSut = () => {
-    return AlunosModel;
+    return FileModel;
 };
 
-describe('Alunos models', () => {
+describe('Processamento Arquivos models', () => {
     beforeAll(async () => {
         await DBConnector.connect(
             DBConnector.mountConnectionUrl(),
@@ -16,7 +16,7 @@ describe('Alunos models', () => {
     });
 
     beforeEach(async () => {
-        mock = AlunosMock();
+        mock = FileMock();
         await repository.deleteMany();
     });
 
