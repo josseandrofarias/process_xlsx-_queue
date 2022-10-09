@@ -1,6 +1,6 @@
 const DBConnector = require('@/lib/db');
 const AlunosModel = require('@/models/alunos.models');
-const AlunosMock = require('../mocks/alunos-mock');
+const AlunosMock = require('../mocks/alunos_mock');
 let repository, mock;
 const makeSut = () => {
     return AlunosModel;
