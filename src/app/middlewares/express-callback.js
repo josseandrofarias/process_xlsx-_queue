@@ -12,7 +12,13 @@ module.exports = (controller) => async (req, res) => {
             'User-Agent': req.get('User-Agent'),
         },
     };
-    const httpResponse = await controller(httpRequest);
-    if (httpResponse.headers) res.set(httpResponse.headers);
-    return res.status(httpResponse.statusCode).send(httpResponse.body);
+    try {
+        const httpResponse = await controller(httpRequest);
+        if (httpResponse.headers) res.set(httpResponse.headers);
+        return res.status(httpResponse.code || 200).send(httpResponse.body);
+    } catch (error) {
+        res.status(error.code || 500).json({ error: error.message || 'Internal Error' });
+    }
+
+
 };
