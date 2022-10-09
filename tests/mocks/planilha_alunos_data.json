@@ -1,0 +1,38 @@
+[
+  {
+    "__EMPTY": "Nome do Aluno",
+    "__EMPTY_1": "Estado Civil",
+    "__EMPTY_2": "Email",
+    "__EMPTY_3": "CPF",
+    "__EMPTY_4": "RG",
+    "__EMPTY_5": "Data de Nascimento",
+    "__EMPTY_6": "Sexo"
+  },
+  {
+    "__EMPTY": "João dos Santos",
+    "__EMPTY_1": "SOLTEIRO(A)",
+    "__EMPTY_2": "joaosantos@gmail.com",
+    "__EMPTY_3": "648.390.370-78",
+    "__EMPTY_4": "31.395.090-8",
+    "__EMPTY_5": 16949,
+    "__EMPTY_6": "Masculino"
+  },
+  {
+    "__EMPTY": "Dyemerson Almeida",
+    "__EMPTY_1": "CASADO(A)",
+    "__EMPTY_2": "dyemerrsonalmeida@gmail.com",
+    "__EMPTY_3": "672.565.110-00",
+    "__EMPTY_4": "50.975.940-3",
+    "__EMPTY_5": 36276,
+    "__EMPTY_6": "Masculino"
+  },
+  {
+    "__EMPTY": "Paulo Botelho",
+    "__EMPTY_1": "CASADO(A)",
+    "__EMPTY_2": "paulobotelho@outlook.com",
+    "__EMPTY_3": "732.510.500-28",
+    "__EMPTY_4": "25.479.830-5",
+    "__EMPTY_5": 21606,
+    "__EMPTY_6": "Masculino"
+  }
+]
