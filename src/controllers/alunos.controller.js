@@ -29,12 +29,14 @@ const updateAluno = async function updateAluno(data) {
     const { body, params } = data;
     if(!params.id) throw new Error('[id] é obrigatório!', { code: 404 });
 
-    const result = await model.update(body, params);
+    const result = await model.updateOne(params.id, body);
     return {
         code: 200,
         body: {
             status: true,
-            data: result,
+            data: {
+                statusUpdate: result,
+            },
         },
     };
 };
@@ -48,7 +50,9 @@ const deleteAluno = async function deleteAluno(data) {
         code: 200,
         body: {
             status: true,
-            data: result,
+            data: {
+                statusDelete: result,
+            },
         },
     };
 };

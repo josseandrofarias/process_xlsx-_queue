@@ -34,7 +34,7 @@ const getById = async function getById(id) {
 };
 
 const updateOne = async function updateOne(id, data) {
-    const criteria = { _id: ObjectId(id, company) };
+    const criteria = { _id: ObjectId(id) };
     const update = {
         $set: extend(data, { updated_at : moment.utc().toDate() }),
     };
