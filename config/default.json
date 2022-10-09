@@ -4,6 +4,12 @@
     "port": 27017,
     "db": "process_xlsx_queue"
   },
+  "queue": {
+    "uri": "amqp://localhost",
+    "user": "rabbitmq",
+    "password": "rabbitmq",
+    "keySheets": "planilhas"
+  },
   "api": {
     "jwtSecret": "KvF1LRaIekcgTjY4cGQa6a2b214J4OYz8aDIGrI@CZt@6RfXD1",
     "port": 3000

@@ -1,7 +1,7 @@
 const { extend, isPlainObject } = require('lodash');
 const moment = require('moment');
 const { get, ObjectId } = require('../lib/db');
-const Alunos = get().collection('sanitizations');
+const Alunos = get().collection('alunos');
 
 const insert = async function insert(aluno) {
     if (!isPlainObject(aluno)) {

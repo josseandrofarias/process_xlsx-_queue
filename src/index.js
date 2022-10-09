@@ -1,6 +1,6 @@
-const Logger = require("./app/lib/logger");
+const Logger = require("./lib/logger");
 
-const DBConnector = require("./app/lib/db");
+const DBConnector = require("./lib/db");
 
 const callbck = (err) => {
     if (err) {
@@ -8,7 +8,7 @@ const callbck = (err) => {
         process.exit(1);
     }
 
-    require("./app/config/migrations").migrateUp((error, result) => {
+    require("./config/migrations").migrateUp((error, result) => {
         if (error) {
             Logger.log("app", "Something wrong. No migrations were applied.");
         }
@@ -18,9 +18,9 @@ const callbck = (err) => {
         }
     });
 
-    require("./app/config/server.js")();
+    require("./config/server.js")();
 
-    // require("../app/cron").scheduleJobs();
+    require("./workers/queueSheets")();
 
     // require("./app/workers");
 };

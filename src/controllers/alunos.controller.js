@@ -1,9 +1,13 @@
 const model = require('../models/alunos.models');
+const queue = require('../lib/queue');
+const config = require('config');
 
 const addSheetToQueue =  async function addSheetToQueue(data) {
     const { file } = data;
-    console.log(file);
+
     const id = file.filename.split('.')[0];
+    queue.sendToQueue(config.get("queue.keySheets"), { file }, { consumerTag: id });
+
     return {
         code: 200,
         body: {
