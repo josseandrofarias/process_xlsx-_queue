@@ -1,5 +1,5 @@
 const express = require('express');
-const controller = require('../controllers/processamento_arquivo.controller');
+const controller = require('../controllers/processamento_arquivos.controller');
 const makeExpressCallback = require('../middlewares/express-callback');
 const multerPlanilha = require('../config/multer');
 

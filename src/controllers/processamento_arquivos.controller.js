@@ -76,4 +76,5 @@ module.exports = {
     addSheetToQueue,
     getByIdArquivo,
     processFile,
+    changeStatusProcess,
 };

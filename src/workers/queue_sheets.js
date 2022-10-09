@@ -1,7 +1,7 @@
 const queue = require("../lib/queue");
 const logger = require("../lib/logger");
 const config = require("config");
-const controller = require("../controllers/processamento_arquivo.controller");
+const controller = require("../controllers/processamento_arquivos.controller");
 
 const worker = function worker() {
     logger.log('workers', 'INIT worker sheet queue');
