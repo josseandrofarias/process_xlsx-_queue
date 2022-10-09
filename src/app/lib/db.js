@@ -1,7 +1,7 @@
 const config = require("config");
 const { MongoClient, ObjectID } = require("mongodb");
 
-const Logger = require("../config/logger");
+const Logger = require("./logger");
 const mongoConfig = config.get("dbConfig");
 
 const state = {

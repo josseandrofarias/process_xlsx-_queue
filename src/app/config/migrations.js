@@ -1,5 +1,5 @@
 const { up } = require("migrate-mongo");
-const DBConnector = require("./db");
+const DBConnector = require("../lib/db");
 
 const db = DBConnector.get();
 const client = DBConnector.client();

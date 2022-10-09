@@ -1,10 +1,26 @@
 const model = require('../models/alunos.models');
 
+const addSheetToQueue =  async function addSheetToQueue(data) {
+    const { file } = data;
+    console.log(file);
+    const id = file.filename.split('.')[0];
+    return {
+        code: 200,
+        body: {
+            message: 'Arquivo adicionado a fila para o processamento. Url para consulta: /alunos/planilhas/:id/status',
+            id,
+        },
+    };
+};
+
 const getAllAluno = async function getAllAluno() {
     const result = model.getAll();
     return {
         code: 200,
-        body: result,
+        body: {
+            status: true,
+            data: result,
+        },
     };
 };
 
@@ -15,7 +31,10 @@ const getByIdAluno = async function getByIdAluno(data) {
     const result = model.getAll(params.id);
     return {
         code: 200,
-        body: result,
+        body: {
+            status: true,
+            data: result,
+        },
     };
 };
 
@@ -26,7 +45,10 @@ const updateAluno = async function updateAluno(data) {
     const result = model.update(body, params);
     return {
         code: 200,
-        body: result,
+        body: {
+            status: true,
+            data: result,
+        },
     };
 };
 
@@ -37,12 +59,16 @@ const deleteAluno = async function deleteAluno(data) {
     const result = model.deleteOne(params.id);
     return {
         code: 200,
-        body: result,
+        body: {
+            status: true,
+            data: result,
+        },
     };
 };
 
 
 module.exports = {
+    addSheetToQueue,
     getAllAluno,
     getByIdAluno,
     updateAluno,

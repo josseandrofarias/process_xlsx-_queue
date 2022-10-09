@@ -1,6 +1,6 @@
-const Logger = require("./app/config/logger");
+const Logger = require("./app/lib/logger");
 
-const DBConnector = require("./app/config/db");
+const DBConnector = require("./app/lib/db");
 
 const callbck = (err) => {
     if (err) {

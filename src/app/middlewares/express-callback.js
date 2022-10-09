@@ -6,6 +6,7 @@ module.exports = (controller) => async (req, res) => {
         ip: req.ip,
         method: req.method,
         path: req.path,
+        file: req.file,
         headers: {
             'Content-Type': req.get('Content-Type'),
             Authorization: req.get('Authorization'),

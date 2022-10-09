@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 
-const { log } = require('../config/logger');
+const { log } = require('../lib/logger');
 const routes = require('../routes');
 
 const start = function start() {
