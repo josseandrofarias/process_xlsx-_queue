@@ -1,7 +1,7 @@
 const { extend, isPlainObject } = require('lodash');
 const moment = require('moment');
 const { get, ObjectId } = require('../lib/db');
-const Alunos = get().collection('alunos');
+const Collection = get().collection('alunos');
 
 const insert = async function insert(aluno) {
     if (!isPlainObject(aluno)) {
@@ -17,19 +17,19 @@ const insert = async function insert(aluno) {
     aluno.updated_at = date;
     aluno.deleted_at = null;
 
-    const result = await Alunos.insertOne(aluno);
+    const result = await Collection.insertOne(aluno);
     return result.insertedId;
 };
 
 const getAll = async function getAll() {
-    const result = await Alunos.find().toArray();
+    const result = await Collection.find().toArray();
     return result;
 };
 
 const getById = async function getById(id) {
     const criteria = { _id: ObjectId(id) };
 
-    const result = await Alunos.findOne(criteria);
+    const result = await Collection.findOne(criteria);
     return result;
 };
 
@@ -39,13 +39,13 @@ const updateOne = async function updateOne(id, data) {
         $set: extend(data, { updated_at : moment.utc().toDate() }),
     };
 
-    const result = await Alunos.updateOne(criteria, update);
+    const result = await Collection.updateOne(criteria, update);
     return result.modifiedCount === 1;
 };
 
 const deleteOne = async function deleteOne(id) {
     const filter = { _id: ObjectId(id) };
-    const result = await Alunos.deleteOne(filter);
+    const result = await Collection.deleteOne(filter);
     return result.deletedCount === 1;
 };
 

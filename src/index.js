@@ -21,8 +21,6 @@ const callbck = (err) => {
     require("./config/server.js")();
 
     require("./workers/queueSheets")();
-
-    // require("./app/workers");
 };
 
 DBConnector.connect(
