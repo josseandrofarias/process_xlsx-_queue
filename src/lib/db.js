@@ -67,6 +67,7 @@ const disconnect = async function disconnect() {
         await state.client.close();
     }
     state.client = null;
+    return state.client;
 };
 
 module.exports = {
