@@ -57,7 +57,7 @@ describe('Alunos models', () => {
             const sut = makeSut();
             const insetedAluno = await sut.insert(mock);
             const getAluno = await sut.getById(insetedAluno);
-            const result = await sut.getAll(mock);
+            const result = await sut.getAll();
             expect(result).toEqual([getAluno]);
         });
     });

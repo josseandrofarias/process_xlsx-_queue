@@ -29,6 +29,8 @@ const updateAluno = async function updateAluno(data) {
     const { body, params } = data;
     if(!params.id) throw new Error('[id] é obrigatório!', { code: 404 });
 
+    if(!body) throw new Error('[body] é obrigatório!', { code: 404 });
+
     const result = await model.updateOne(params.id, body);
     return {
         code: 200,
