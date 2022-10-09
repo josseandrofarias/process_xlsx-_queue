@@ -1,0 +1,28 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+      "semi": [2, "always"],
+      "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
+      "indent": [2, 4, { "SwitchCase": 1 }],
+      "no-case-declarations": 0,
+      "comma-dangle": ["error", "always-multiline"],
+      "camelcase": ["error", { "properties": "never" }]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
+
