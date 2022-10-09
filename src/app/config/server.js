@@ -15,13 +15,6 @@ const start = function start() {
         origin: '*',
     }));
 
-
-    app.use(json({ limit: '1gb' }));
-    app.use(urlencoded({
-        extended: false,
-        limit: '1gb',
-    }));
-
     app.get('/', (_, res) => res.status(404).json({
         code: 404,
         message: 'Not found',
