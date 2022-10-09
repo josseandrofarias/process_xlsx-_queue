@@ -8,31 +8,29 @@ const state = {
     client: null,
 };
 
-const connect = function connect(url, options, callback) {
-    console.log(url, options);
-    if (state.client) {
-        return callback();
+const connect = async function connect(url, options, callback) {
+    state.client = await MongoClient.connect(url, options);
+    if (!state.client) {
+        Logger.log("app:config:connector", "Connection failed");
     }
+    Logger.log("app:config:connector", "MongoDB Connected");
 
-    MongoClient.connect(url, options, (err, client) => {
-        if (err) {
-            Logger.log("app:config:connector", "Connection failed");
-
-            return callback(err);
-        }
-        Logger.log("app:config:connector", "MongoDB Connected");
-        state.client = client;
-
-        return callback();
-    });
+    if(callback){
+        callback(state.client);
+    }
+    return state.client;
 };
 
-const get = function get() {
+const get = async function get(collection = '') {
     if (!state.client) {
-        connect(mountConnectionUrl(), connectionOptions());
+        await connect(mountConnectionUrl(), connectionOptions());
     }
+    let db = state.client.db(mongoConfig.db);
 
-    return state.client.db(mongoConfig.db);
+    if(collection)
+        db = state.client.db(mongoConfig.db).collection(collection);
+
+    return db;
 };
 
 const client = function client() {
@@ -50,7 +48,6 @@ const mountConnectionUrl = function mountConnectionUrl() {
         port = "",
         db = "",
     } = mongoConfig;
-
     const server = `${host}:${port}`;
 
     // check if auth is present and if it ends
@@ -64,6 +61,14 @@ const connectionOptions = function connectionOptions() {
     return { useNewUrlParser: true, useUnifiedTopology: true };
 };
 
+const disconnect = async function disconnect() {
+    state.client;
+    if (state.client) {
+        await state.client.close();
+    }
+    state.client = null;
+};
+
 module.exports = {
     mountConnectionUrl,
     connectionOptions,
@@ -71,4 +76,5 @@ module.exports = {
     get,
     connect,
     ObjectId,
+    disconnect,
 };

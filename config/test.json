@@ -1,0 +1,21 @@
+{
+  "dbConfig": {
+    "host": "localhost",
+    "port": 27017,
+    "db": "process_xlsx_queue_test"
+  },
+  "queue": {
+    "uri": "amqp://localhost",
+    "user": "rabbitmq",
+    "password": "rabbitmq",
+    "keySheets": "planilhas"
+  },
+  "api": {
+    "jwtSecret": "KvF1LRaasdsdk ij3478sdiufn&G*HNiuhsd78sdh@6RfXD1",
+    "port": 3000
+  },
+  "credit": {
+    "initialLimit": 100,
+    "initialDays": 1
+  }
+}

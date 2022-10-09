@@ -1,9 +1,9 @@
 const { extend, isPlainObject } = require('lodash');
 const moment = require('moment');
 const { get, ObjectId } = require('../lib/db');
-const Collection = get().collection('processamento_arquivos');
 
 const insert = async function insert(file) {
+    const Collection = await get('processamento_arquivos');
     const date = moment.utc().toDate();
 
     file.created_at = date;
@@ -15,6 +15,7 @@ const insert = async function insert(file) {
 };
 
 const getById = async function getById(id) {
+    const Collection = await get('processamento_arquivos');
     const criteria = { _id: ObjectId(id) };
 
     const result = await Collection.findOne(criteria);
@@ -22,6 +23,7 @@ const getById = async function getById(id) {
 };
 
 const updateOne = async function updateOne(id, data) {
+    const Collection = await get('processamento_arquivos');
     const criteria = { _id: ObjectId(id) };
     const update = {
         $set: extend(data, { updated_at : moment.utc().toDate() }),
