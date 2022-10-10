@@ -4,10 +4,9 @@
 - NodeJs
 - Rabbitmq
 - MongoDB
-- Migrations (knex.js)
-- Joi
 - Tests(e2e)
 - Docker
+- Jest
 
 ## Desafio
 - Receberá uma planilha de alunos (segue em anexo) que deve ser
@@ -27,8 +26,8 @@ Path | Method | Description
 /alunos/:id | PUT | Alterar os dados de um aluno
 /alunos/:id | DELETE | Deletar um aluno
 
-#### /file
+#### /arquivos
 Path | Method | Description
 ---|---|---
-/file | POST | Trigger para inciar novo processamento
-/file/process | GET | Recupera status do último processo da planilha
+/arquivos/planilhas/alunos | POST | Envia um arquivo para o processamento
+/planilhas/alunos/:id/status | GET | Recupera status de processamento de um planilha pelo seu id
