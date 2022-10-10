@@ -1,4 +1,4 @@
-version: '2'
+version: "3.7"
 
 services:
   mongodb:
@@ -9,6 +9,8 @@ services:
       -  'MONGODB_PASS=password!'
     volumes:
       - 'mongodb-data:/data/db'
+    networks:
+      - mynetwork
     ports:
       - '27017:27017'
   rabbitmq:
@@ -20,31 +22,28 @@ services:
       RABBITMQ_DEFAULT_USER: 'rabbitmq'
       RABBITMQ_DEFAULT_PASS: 'rabbitmq'
       RABBITMQ_DEFAULT_VHOST: '/'
+    networks:
+      - mynetwork
     ports:
       - '15672:15672'
       - '5672:5672'
     labels:
       NAME: 'rabbitmq'
-    #volumes:
-      #- './enabled_plugins:/etc/rabbitmq/enabled_plugins'
-      #- './rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro'
-      #- './autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez'
   process_xlsx_queue:
     build: .
     ports:
-    - "3000:3000"
+    - '3000:3000'
     volumes:
     - .:/usr/app
     depends_on:
       - mongodb
       - rabbitmq
+    networks:
+      - mynetwork
 
 volumes:
   mongodb-data: {}
 
 networks:
-  default:
-    name: queue_xlsx_default
+  mynetwork:
     driver: bridge
-    driver_opts:
-      "com.docker.network.enable_ipv6": "false"
